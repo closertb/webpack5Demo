@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import ReactDOM from 'react-dom';
-import antd from 'antd';
+import Antd from 'antd';
+// import { Button } from 'antd';
 import { StepBackwardOutlined } from '@ant-design/icons'
 
 console.log('sd');
@@ -9,9 +10,9 @@ const App = () => {
   const [cn, setCn] = useState(5);
   return (
     <div>
-      <antd.Button type="primary">start test</antd.Button>
+      <div><Button type="primary">start test</Button></div>
       cn value is {cn}
-      <StepBackwardOutlined />
+      <div><StepBackwardOutlined /></div>
     </div>);
 };
 
