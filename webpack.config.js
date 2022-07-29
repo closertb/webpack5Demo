@@ -3,35 +3,52 @@ const path = require('path');
 const { resolve } = require;
 
 const entry = {
-  index: './src/index.jsx',
+  index: './src/index.tsx',
 };
+
 
 module.exports = {
   entry,
-  mode: 'development',
-  devtool: 'source-map',
+  mode: process.env.NODE_ENV || 'development',
+  devtool: 'cheap-source-map',
   devServer: {
     port: 8090,
     hot: true,
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, './dist'),
+    pathinfo: false,
     filename: '[name].js',
+    // libraryTarget: 'system',
+    // publicPath: './',
   },
   plugins: [new HtmlWebpackPlugin({
     filename: 'index.html',
     template: require.resolve('./index.ejs'),
+    inject: false,
+    // publicPath: './',
   })],
   resolve: {
-    extensions: ['.jsx', '.js'],
+    extensions: ['.tsx', '.jsx', '.js'],
   },
   externals: {
     react: 'React',
     'react-dom': 'ReactDOM',
+    'antd': 'antd',
     '@ant-design/icons': 'icons',
   },
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'ts-loader',
+          options: {
+            transpileOnly: true,
+          }
+        }
+      },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
