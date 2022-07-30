@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import ReactDOM from 'react-dom';
-import antd from 'antd';
+import * as antd from 'antd';
 import { StepBackwardOutlined } from '@ant-design/icons'
 
 console.log('sd');

@@ -24,7 +24,7 @@
       function importDefault(module) {
         return useDefault
           ? Object.assign({}, module, { default: module, __useDefault: true })
-          : { default: module, __useDefault: true };
+          : module;
       }
       function register() {
         return (function (e) {
