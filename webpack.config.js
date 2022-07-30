@@ -3,7 +3,7 @@ const path = require('path');
 const { resolve } = require;
 
 const entry = {
-  index: './src/index.tsx',
+  index: './src/index.jsx',
 };
 
 
@@ -19,7 +19,7 @@ module.exports = {
     path: path.resolve(__dirname, './dist'),
     pathinfo: false,
     filename: '[name].js',
-    // libraryTarget: 'system',
+    libraryTarget: 'system',
     // publicPath: './',
   },
   plugins: [new HtmlWebpackPlugin({
