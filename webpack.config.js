@@ -57,19 +57,19 @@ module.exports = {
           options: {
             presets: ['@babel/preset-react', '@babel/preset-env'],
             plugins: [
-              resolve('@babel/plugin-proposal-object-rest-spread'),
-              [
-                  resolve('@babel/plugin-proposal-decorators'),
-                  {
-                      legacy: true,
-                  },
-              ],
-              resolve('@babel/plugin-transform-runtime'),
-              resolve('@babel/plugin-proposal-class-properties'),
-              resolve('@babel/plugin-proposal-function-bind'),
-              resolve('@babel/plugin-proposal-export-default-from'),
-              resolve('@babel/plugin-proposal-export-namespace-from'),
-              resolve('@babel/plugin-syntax-dynamic-import'),
+              // resolve('@babel/plugin-proposal-object-rest-spread'),
+              // [
+              //     resolve('@babel/plugin-proposal-decorators'),
+              //     {
+              //         legacy: true,
+              //     },
+              // ],
+              // resolve('@babel/plugin-transform-runtime'),
+              // resolve('@babel/plugin-proposal-class-properties'),
+              // resolve('@babel/plugin-proposal-function-bind'),
+              // resolve('@babel/plugin-proposal-export-default-from'),
+              // resolve('@babel/plugin-proposal-export-namespace-from'),
+              // resolve('@babel/plugin-syntax-dynamic-import'),
             ],
           },
         },
