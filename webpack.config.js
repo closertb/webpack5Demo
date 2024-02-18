@@ -1,9 +1,11 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
-const { resolve } = require;
+const ChunkOptimazitionPlugin = require('./plugin/split-helper').default;
+const TerserPlugin = require('terser-webpack-plugin');
 
 const entry = {
   index: './src/index.jsx',
+  example:  './src/example.jsx',
 };
 
 
@@ -20,13 +22,36 @@ module.exports = {
     pathinfo: false,
     filename: '[name].js',
     libraryTarget: 'system',
-    // publicPath: './',
+    publicPath: '//localhost:8090/',
   },
   plugins: [new HtmlWebpackPlugin({
+    title: 'index',
     filename: 'index.html',
     template: require.resolve('./index.ejs'),
+    chunks: ['index.js'],
     inject: false,
     // publicPath: './',
+  }), new HtmlWebpackPlugin({
+    title: 'example',
+    filename: 'example.html',
+    template: require.resolve('./index.ejs'),
+    chunks: ['example.js'],
+    inject: false,
+  // adjust systemJS split chunk,
+  }), new ChunkOptimazitionPlugin({
+    cacheGroups: {
+      jsonpFunction: 'demoJSonp',
+      // 去掉默认配置, 否则除了vendors，还会将node_modules其他复用的模块打一个包；
+      default: false,
+      fasterBuild: true,
+      vendors: {
+          // cacheGroups重写继承配置，设为false不继承
+          test: /[\\/]node_modules[\\/]_?(react-router|react-router-dom|antd)[@,\\/]/,
+          name: 'vendors',
+          minChunks: 1,
+          priority: -20,
+      },
+  },
   })],
   resolve: {
     extensions: ['.tsx', '.jsx', '.js'],
@@ -34,8 +59,11 @@ module.exports = {
   externals: {
     react: 'React',
     'react-dom': 'ReactDOM',
-    'antd': 'antd',
-    '@ant-design/icons': 'icons',
+    // 'antd': 'antd',
+    // '@ant-design/icons': 'icons',
+  },
+  optimization: {
+    minimize: false,
   },
   module: {
     rules: [

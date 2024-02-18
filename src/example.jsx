@@ -1,18 +1,17 @@
 import { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { Button, Popover } from 'antd';
+import { Button, Tooltip } from 'antd';
 import { StepBackwardOutlined } from '@ant-design/icons'
 
-const App = () => {
+const Example = () => {
   const [cn, setCn] = useState(5);
-  const [visible, setVisible] = useState(false);
   return (
     <div>
       <div>
         <Button type="primary">start test</Button></div>
-        <Popover content={<div><div>content number one</div><div>content number two</div></div>} title="this is a popover test">
-          <div style={{ marginTop: 70 }} onClick={() => setVisible(!visible)}>home page, the value is {cn}</div>
-        </Popover>
+        <Tooltip title={`this is a toolTop test`}>
+          <div style={{ marginTop: 30 }}>example page, the number {cn}</div>
+        </Tooltip>
       <div>
       <StepBackwardOutlined />
       </div>
@@ -20,6 +19,6 @@ const App = () => {
 };
 
 ReactDOM.render(
-  <App />,
+  <Example />,
   document.getElementById('app-root'),
 );
